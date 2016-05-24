@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2E42BDE7-6917-45F0-A7B2-2174DCA20C2E}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="NTS Code Library\NTS.CodeLibrary.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="NTS UI Aero\NTS.UI.Aero.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="NTS_CodeLibrary">
+			<MSBuild Projects="NTS Code Library\NTS.CodeLibrary.dproj"/>
+		</Target>
+		<Target Name="NTS_CodeLibrary:Clean">
+			<MSBuild Projects="NTS Code Library\NTS.CodeLibrary.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="NTS_CodeLibrary:Make">
+			<MSBuild Projects="NTS Code Library\NTS.CodeLibrary.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="NTS_UI_Aero">
+			<MSBuild Projects="NTS UI Aero\NTS.UI.Aero.dproj"/>
+		</Target>
+		<Target Name="NTS_UI_Aero:Clean">
+			<MSBuild Projects="NTS UI Aero\NTS.UI.Aero.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="NTS_UI_Aero:Make">
+			<MSBuild Projects="NTS UI Aero\NTS.UI.Aero.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="NTS_CodeLibrary;NTS_UI_Aero"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="NTS_CodeLibrary:Clean;NTS_UI_Aero:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="NTS_CodeLibrary:Make;NTS_UI_Aero:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

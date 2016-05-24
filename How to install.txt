@@ -1,0 +1,18 @@
+	
+	NTS Code suite
+	
+Instaltion
+
+1 - Close Delphi IDE if it runned
+2 - Run "SetupPaths.cmd" for set up path
+3 - Run Delphi XE
+	3.1 - Build and install "NTS Code Library\NTS.CodeLibrary" package
+	3.2 - Build and install "NTS UI Aero\NTS.UI.Aero" package
+4 - Set up Library path in Delph:
+	4.1 - Select "Tools"->"Options"
+	4.2 - Go to "Environment Options"->"Delphi Options"->Library
+	4.3 - Library path (Directories (all platforms)):
+		4.3.1 - Add "$(NTS_LIB_ROOT)\NTS Code Library\Sources\"
+		4.3.2 - Add "$(NTS_LIB_ROOT)\NTS UI Aero\Sources\"
+		[Only in Delphi XE] 4.3.3 - Add "$(NTS_LIB_ROOT)\NTS Code Library\GDIPlus\"
+5 - Done.

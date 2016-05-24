@@ -1,0 +1,76 @@
+{*******************************************************}
+{                                                       }
+{                   NTS Aero UI Library                 }
+{         Created by GooD-NTS ( good.nts@gmail.com )    }
+{           http://ntscorp.ru/  Copyright(c) 2011       }
+{          License: Mozilla Public License 1.1          }
+{                                                       }
+{*******************************************************}
+
+package NTS.UI.Aero;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'UI Aero Library (New Technology Studio) for XE'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vclimg,
+  vcl,
+  NTS.CodeLibrary;
+
+contains
+  UI.Aero.Core in 'Sources\UI.Aero.Core.pas',
+  UI.Aero.Globals in 'Sources\UI.Aero.Globals.pas',
+  UI.Aero.Window in 'Sources\UI.Aero.Window.pas',
+  UI.Aero.Core.BaseControl in 'Sources\UI.Aero.Core.BaseControl.pas',
+  UI.Aero.Core.Images in 'Sources\UI.Aero.Core.Images.pas',
+  UI.Aero.Core.CustomControl in 'Sources\UI.Aero.Core.CustomControl.pas',
+  UI.Aero.Core.CustomControl.Animation in 'Sources\UI.Aero.Core.CustomControl.Animation.pas',
+  UI.Aero.Button in 'Sources\UI.Aero.Button.pas',
+  UI.Aero.Button.Custom in 'Sources\UI.Aero.Button.Custom.pas',
+  UI.Aero.Button.Expando in 'Sources\UI.Aero.Button.Expando.pas',
+  UI.Aero.Button.Image in 'Sources\UI.Aero.Button.Image.pas',
+  UI.Aero.Button.Task in 'Sources\UI.Aero.Button.Task.pas',
+  UI.Aero.Button.Theme in 'Sources\UI.Aero.Button.Theme.pas',
+  UI.Aero.Button.Extended in 'Sources\UI.Aero.Button.Extended.pas',
+  UI.Aero.Button.Image.Extended in 'Sources\UI.Aero.Button.Image.Extended.pas',
+  UI.Aero.black.GameButton in 'Sources\UI.Aero.black.GameButton.pas',
+  UI.Aero.StatusBox in 'Sources\UI.Aero.StatusBox.pas',
+  UI.Aero.SearchBox in 'Sources\UI.Aero.SearchBox.pas',
+  UI.Aero.Labels in 'Sources\UI.Aero.Labels.pas',
+  UI.Aero.PageManager in 'Sources\UI.Aero.PageManager.pas',
+  UI.Aero.Image in 'Sources\UI.Aero.Image.pas',
+  UI.Aero.ThemeElement in 'Sources\UI.Aero.ThemeElement.pas',
+  UI.Aero.Panel in 'Sources\UI.Aero.Panel.pas',
+  UI.Aero.ListBox in 'Sources\UI.Aero.ListBox.pas',
+  UI.Aero.ToolTip in 'Sources\UI.Aero.ToolTip.pas',
+  UI.Aero.Composition in 'Sources\UI.Aero.Composition.pas',
+  UI.Aero.Footer in 'Sources\UI.Aero.Footer.pas',
+  UI.Aero.ColorHost in 'Sources\UI.Aero.ColorHost.pas',
+  UI.Aero.BackForward in 'Sources\UI.Aero.BackForward.pas',
+  UI.Aero.RecentList in 'Sources\UI.Aero.RecentList.pas',
+  NTS.UI.Aero.Environment.Register.Components in 'Sources\NTS.UI.Aero.Environment.Register.Components.pas';
+
+end.
