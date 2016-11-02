@@ -246,6 +246,7 @@ begin
     tbRight: ImgPos.X:= Self.Width-Image.PartWidth;
   end;
 
+  if Assigned(Image.Data) then
   case DrawState of
     bsNormal    : AeroPicture.DrawPart(PaintDC,Image.Data.Canvas.Handle,ImgPos,Image.PartSize,Image.PartNormal,Image.Orientation);
     bsHightLight: AeroPicture.DrawPart(PaintDC,Image.Data.Canvas.Handle,ImgPos,Image.PartSize,Image.PartHightLight,Image.Orientation);

@@ -281,12 +281,18 @@ procedure TAeroPartImage.SetImage(const Value: TImageFileName);
 begin
   if fImage <> Value then
   begin
-    fImage:= Value;
+    fImage := Value;
+
     if Assigned(Data) then
-      Data.Free;
+    begin
+      Data.Free();
+      Data := nil;
+    end;
+
     if FileExists(fImage) then
-      Data:= AeroPicture.LoadImage(fImage);
-    Change;
+      Data := AeroPicture.LoadImage(fImage);
+
+    Change();
   end;
 end;
 
