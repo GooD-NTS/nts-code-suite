@@ -88,14 +88,14 @@ var
  GPSurface: TGPGraphics;
  clRect: TRect;
 begin
- GPSurface:= nil;
+  GPSurface:= nil;
 //
- clRect:= GetClientRect;
- DrawAeroParentBackground(DC,clRect);
+  clRect:= GetClientRect;
+  DrawAeroParentBackground(DC, clRect);
 //
- if (arsGDIP in RConfig) then GPSurface:= TGPGraphics.Create(DC);
- RenderState(DC,GPSurface,RConfig,DrawState);
- if Assigned(GPSurface) then GPSurface.Free;
+  if (arsGDIP in RConfig) then GPSurface:= TGPGraphics.Create(DC);
+  RenderState(DC,GPSurface,RConfig,DrawState);
+  if Assigned(GPSurface) then GPSurface.Free;
 end;
 
 procedure TCustomAeroControlWithAnimation.RenderProcedure_Classic(const ACanvas: TCanvas);

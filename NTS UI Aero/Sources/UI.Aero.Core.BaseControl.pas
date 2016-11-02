@@ -243,9 +243,9 @@ begin
     DrawThemeParentBackground(Self.Handle, DrawDC, @DrawRect)
   else
   begin
-    Canvas.Brush.Color:= TransparentColor;
-    Canvas.Brush.Style:= bsSolid;
-    FillRect(DrawDC,DrawRect,Canvas.Brush.Handle);
+    Canvas.Brush.Color := TransparentColor;
+    Canvas.Brush.Style := bsSolid;
+    FillRect(DrawDC, DrawRect, Canvas.Brush.Handle);
   end;
 end;
 

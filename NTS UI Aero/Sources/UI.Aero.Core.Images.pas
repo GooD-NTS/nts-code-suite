@@ -216,20 +216,20 @@ end;
 
 class procedure AeroPicture.StretchDraw(DC: hDC; Image: TBitMap; ImgRect: TRect);
 begin
-  AlphaBlend(DC, ImgRect.Left, ImgRect.Top, ImgRect.Right, ImgRect.Bottom,
-    Image.Canvas.Handle, 0, 0, Image.Width, Image.Height, Blend);
+  if Assigned(Image) then
+    AlphaBlend(DC, ImgRect.Left, ImgRect.Top, ImgRect.Right, ImgRect.Bottom, Image.Canvas.Handle, 0, 0, Image.Width, Image.Height, Blend);
 end;
 
-Class Procedure AeroPicture.Draw(DC: hDC;Image: TBitMap; Pos: TPoint; Size: TSize);
+class Procedure AeroPicture.Draw(DC: hDC;Image: TBitMap; Pos: TPoint; Size: TSize);
 begin
-  AlphaBlend(DC, Pos.X, Pos.Y, Size.cx, Size.cy, Image.Canvas.Handle, 0, 0,
-    Size.cx, Size.cy, Blend);
+  if Assigned(Image) then
+    AlphaBlend(DC, Pos.X, Pos.Y, Size.cx, Size.cy, Image.Canvas.Handle, 0, 0, Size.cx, Size.cy, Blend);
 end;
 
 class procedure AeroPicture.Draw(DC: hDC; Image: TBitMap; Pos: TPoint);
 begin
-  AlphaBlend(DC, Pos.X, Pos.Y, Image.Width, Image.Height, Image.Canvas.Handle,
-    0, 0, Image.Width, Image.Height, Blend);
+  if Assigned(Image) then
+    AlphaBlend(DC, Pos.X, Pos.Y, Image.Width, Image.Height, Image.Canvas.Handle, 0, 0, Image.Width, Image.Height, Blend);
 end;
 
 class procedure AeroPicture.DrawPart(Surface, Part: hDC; PartPos: TPoint; PartSize: TSize; Index: Integer; Orientation: TPartOrientation);
