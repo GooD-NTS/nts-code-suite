@@ -109,7 +109,8 @@ type
 implementation
 
 uses
-  IOUtils,
+  System.Types,
+  System.IOUtils,
   NTS.Code.Helpers;
 
 { TBaseAeroWindow }

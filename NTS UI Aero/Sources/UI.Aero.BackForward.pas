@@ -514,35 +514,39 @@ var
   OStateForward: TAeroButtonState;
 begin
   Inherited MouseDown(Button, Shift, X, Y);
-  OStateBack:= FStateBack;
-  OStateForward:= FStateForward;
 
-  if (FStateBack <> bsDisabled) then
+  if Button = mbLeft then
   begin
-    if Point(X,Y).InRect( Rect(0, 0, 38, 35) ) then
-    begin
-      FStateBack:= bsDown;
-      FBackDown:= True;
-      FMenuTimer.Enabled:= True;
-    end
-    else
-      FBackDown:= False;
-  end;
+    OStateBack:= FStateBack;
+    OStateForward:= FStateForward;
 
-  if (FStateForward <> bsDisabled) then
-  begin
-    if Point(X,Y).InRect( Rect(38, 0, 76, 35) ) then
+    if (FStateBack <> bsDisabled) then
     begin
-      FStateForward:= bsDown;
-      FForwardDown:= True;
-      FMenuTimer.Enabled:= True;
-    end
-    else
-      FForwardDown:= False;
-  end;
+      if Point(X,Y).InRect( Rect(0, 0, 38, 35) ) then
+      begin
+        FStateBack:= bsDown;
+        FBackDown:= True;
+        FMenuTimer.Enabled:= True;
+      end
+      else
+        FBackDown:= False;
+    end;
 
-  if (OStateBack <> FStateBack) or (OStateForward <> FStateForward) then
-    Invalidate;
+    if (FStateForward <> bsDisabled) then
+    begin
+      if Point(X,Y).InRect( Rect(38, 0, 76, 35) ) then
+      begin
+        FStateForward:= bsDown;
+        FForwardDown:= True;
+        FMenuTimer.Enabled:= True;
+      end
+      else
+        FForwardDown:= False;
+    end;
+
+    if (OStateBack <> FStateBack) or (OStateForward <> FStateForward) then
+      Invalidate;
+  end;
 end;
 
 procedure TAeroIEBackForward.MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
