@@ -17,10 +17,14 @@ uses
   {$IFDEF HAS_UNITSCOPE}
   System.SysUtils,
   System.Classes,
+  System.Generics.Defaults,
+  System.Generics.Collections,
+
   Winapi.Windows,
   Winapi.Messages,
   Winapi.UxTheme,
   Winapi.DwmApi,
+
   Vcl.Controls,
   Vcl.Graphics,
   Vcl.Themes,
@@ -80,7 +84,9 @@ type
     fShowCaptionBar: BooLean;
     fDragWindow: BooLean;
     fLines: TStrings;
+    FStringDictionary: TDictionary<string, string>;
     fLinesCount: Integer;
+
     procedure SetIcon(const Value: TImageFileName);
     procedure SetShowCaptionBar(const Value: BooLean);
     procedure SetShowInTaskBar(const Value: BooLean);
@@ -88,20 +94,24 @@ type
     procedure SetLines(const Value: TStrings);
     function GetStringListText: String;
     procedure SetLinesCount(const Value: Integer);
+    procedure SetStringDictionary(const Value: TDictionary<string, string>);
   protected
-    Procedure AEROWindowProc(var Message: TMessage); OverRide;
+    Procedure AEROWindowProc(var Message: TMessage); override;
     Procedure ChangeTaskBar;
     Procedure ChangeCaptionBar;
   public
-    Constructor Create(AOwner: TComponent); OverRide;
-    Destructor Destroy; OverRide;
-    function GetString(Index: Integer): string; inline;
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy(); override;
+
+    function GetString(Index: Integer): string; overload; inline;
+    function GetString(const key: string): string; overload; inline;
   published
     property Icon: TImageFileName Read fIcon Write SetIcon;
     property ShowInTaskBar: BooLean Read fShowInTaskBar Write SetShowInTaskBar Default True;
     property ShowCaptionBar: BooLean Read fShowCaptionBar Write SetShowCaptionBar Default True;
     Property DragWindow: BooLean Read fDragWindow Write fDragWindow Default False;
     property StringList: TStrings Read fLines Write SetLines;
+    property StringDictionary: TDictionary<string,string> read FStringDictionary write SetStringDictionary;
     property LinesCount: Integer Read fLinesCount Write SetLinesCount;
     property Text: String Read GetStringListText;
   end;
@@ -358,21 +368,25 @@ end;
 
 { TAeroWindow }
 
-Constructor TAeroWindow.Create(AOwner: TComponent);
+constructor TAeroWindow.Create(AOwner: TComponent);
 begin
-  Inherited Create(AOwner);
-  fIcon:= '';
-  fShowInTaskBar:= True;
-  fShowCaptionBar:= True;
-  fDragWindow:= False;
-  fLines:= TStringList.Create;
-  fLinesCount:= 0;
+  inherited Create(AOwner);
+
+  fIcon := '';
+  fShowInTaskBar := True;
+  fShowCaptionBar := True;
+  fDragWindow := False;
+  fLines := TStringList.Create();
+  FStringDictionary := TDictionary<string, string>.Create();
+  fLinesCount := 0;
 end;
 
-Destructor TAeroWindow.Destroy;
+destructor TAeroWindow.Destroy();
 begin
+  FStringDictionary.Free();
   fLines.Free;
-  Inherited Destroy;
+
+  inherited Destroy();
 end;
 
 procedure TAeroWindow.DragMove(X, Y: Integer);
@@ -402,10 +416,16 @@ end;
 
 function TAeroWindow.GetString(Index: Integer): string;
 begin
-  if (StringList.Count > 0) and (Index > -1) and (Index < StringList.Count-1) then
-    Result:= StringList[Index]
+  if (StringList.Count > 0) and (Index > -1) and (Index < StringList.Count - 1) then
+    Result := StringList[Index]
   else
-    Result:= 'LangString:'+IntToStr(Index);
+    Result := 'GetString@' + IntToStr(Index);
+end;
+
+function TAeroWindow.GetString(const key: string): string;
+begin
+  if not FStringDictionary.TryGetValue(key, Result) then
+    Result := key;
 end;
 
 function TAeroWindow.GetStringListText: String;
@@ -499,6 +519,13 @@ begin
   end;
 end;
 
+procedure TAeroWindow.SetStringDictionary(const Value: TDictionary<string, string>);
+begin
+  FStringDictionary.Free();
+
+  FStringDictionary := TDictionary<string, string>.Create(Value);
+end;
+
 procedure TAeroWindow.ChangeCaptionBar;
 begin
   if AeroCore.RunWindowsVista then
@@ -522,8 +549,8 @@ end;
 
 Initialization
 begin
-  Screen.Cursors[crHandPoint]:= LoadCursor(0,IDC_HAND);
-  GIFImageDefaultAnimate:= True;
+  Screen.Cursors[crHandPoint] := LoadCursor(0,IDC_HAND);
+  GIFImageDefaultAnimate := True;
 
 end;
 
