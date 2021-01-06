@@ -93,10 +93,12 @@ begin
 
 end;
 
-procedure TAeroCustomButton.Click;
+procedure TAeroCustomButton.Click();
 begin
-  SetFocus;
-  Inherited Click;
+  if Enabled and Visible then
+    SetFocus();
+
+  inherited Click();
 end;
 
 function TAeroCustomButton.GetButtonState: TAEROButtonState;

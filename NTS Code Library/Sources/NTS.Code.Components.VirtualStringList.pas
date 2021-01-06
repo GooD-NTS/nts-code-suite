@@ -66,16 +66,19 @@ begin
   FLines.Assign(Value);
 end;
 
-procedure TVirtualStringList.SetNewCount(const Value: Integer);
+procedure TVirtualStringList.SetNewCount(const value: Integer);
 var
-  I: Integer;
+  i: Integer;
 begin
-  fSetCount:= Value;
+  fSetCount := value;
   if not (csDesigning in ComponentState) then
   begin
-    FLines.Clear;
-    for I:=0 to Value do
-      FLines.Add(IntToStr(I));
+    if FLines.Count <> value then
+    begin
+      FLines.Clear();
+      for i := 0 to value do
+        FLines.Add(IntToStr(i));
+    end;
   end;
 end;
 
